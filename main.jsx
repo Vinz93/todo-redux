@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom';
 import deepFreeze from 'deep-freeze';
 import expect from 'expect';
 
-import VisibleTodoList from './containers/VisibleTodoList'
+import VisibleTodoList from './containers/VisibleTodoList';
+import AddTodo from './containers/AddTodo';
 
 /*
  * The reducers
@@ -138,35 +139,6 @@ const visibilityFilter = (
      </div>
    );
  }
-
- let nextId = 0;
- const AddTodo = (props, { store }) => {
-   let input;
-
-   return (
-      <div>
-        <input ref={
-            node => {
-             input = node;
-            }}/>
-        <button
-          onClick={ () =>{
-            store.dispatch({
-              type: 'ADD_TODO',
-              text: input.value,
-              id: nextId++
-            });
-            input.value = '';
-          }}>
-          Add Todo
-        </button>
-      </div>
-    );
- }
- AddTodo.contextTypes = {
-   store: React.PropTypes.object
- };
-
 
 const TodoApp = () => {
   return(
