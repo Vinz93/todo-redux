@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import deepFreeze from 'deep-freeze';
 import expect from 'expect';
 
+import VisibleTodoList from './containers/VisibleTodoList'
+
 /*
  * The reducers
  */
@@ -137,35 +139,6 @@ const visibilityFilter = (
    );
  }
 
- const Todo = (props) => {
-   return(
-     <li
-       onClick={props.onClick}
-         style={{
-           textDecoration:
-             props.completed ? 'line-through' : 'none'
-         }}>
-       {props.text}
-     </li>
-   );
- }
-
- const TodoList = (props) => {
-   return(
-     <ul>
-       { props.todos.map( todo =>{
-         return (
-           <Todo
-             key={todo.id}
-              {...todo}
-              onClick={() => props.onTodoClick(todo.id)}
-            />
-          );
-       })}
-     </ul>
-   );
- }
-
  let nextId = 0;
  const AddTodo = (props, { store }) => {
    let input;
@@ -194,41 +167,6 @@ const visibilityFilter = (
    store: React.PropTypes.object
  };
 
- const getVisibleTodos = (todos, filter) => {
-   switch(filter){
-     case 'SHOW_ALL':
-      return todos;
-    case 'SHOW_COMPLETED':
-      return todos.filter( t => t.completed );
-    case 'SHOW_ACTIVE':
-      return todos.filter( t => !t.completed );
-   }
- }
-
- const mapStoreToProps = (state) => {
-   return {
-     todos: getVisibleTodos(
-       state.todos,
-       state.visibilityFilter
-     )
-   };
- };
-
- const mapDispatchToProps = (dispatch) => {
-   return {
-     onTodoClick: (id) => {
-       dispatch({
-         type: 'TOGGLE_TODO',
-         id
-       })
-     }
-   };
- };
-
-const VisibleTodoList = connect(
-  mapStoreToProps,
-  mapDispatchToProps
-)(TodoList);
 
 const TodoApp = () => {
   return(
