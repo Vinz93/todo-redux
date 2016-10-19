@@ -24,9 +24,7 @@ import { toggleTodo } from '../actions';
 
  const mapDispatchToProps = dispatch => {
    return {
-     onTodoClick: (id) => {
-       dispatch(toggleTodo(id))
-     }
+     onTodoClick: id => dispatch(toggleTodo(id))     
    };
  };
 
