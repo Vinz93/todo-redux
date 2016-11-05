@@ -1,23 +1,19 @@
-let nextId = 0;
+import { v4 } from 'node-uuid';
 
-export const addTodo = (text) => {
-  return {
-    type: 'ADD_TODO',
-    text,
-    id: nextId++
-  }
-}
+export const addTodo = (text) => ({
+     type: 'ADD_TODO',
+     text,
+     id: v4()
+   });
 
-export const setVisibilityFilter = (filter) => {
-  return {
+
+export const setVisibilityFilter = (filter) => ({
      type: 'SET_VISIBILITY_FILTER',
      filter
-  }
-}
+  });
 
-export const toggleTodo = (id) => {
-  return {
+
+export const toggleTodo = (id) => ({
     type: 'TOGGLE_TODO',
     id
-  }
-}
+  });

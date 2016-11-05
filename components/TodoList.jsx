@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo';
 
-const TodoList = (props) => {
-  return(
+const TodoList = (props) => (
     <ul>
       { props.todos.map( todo =>{
         return (
@@ -15,6 +14,6 @@ const TodoList = (props) => {
       })}
     </ul>
   );
-}
+
 
 export default TodoList
