@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "deep-freeze": "0.0.1",
-    "expect": "^1.20.2"
+    "expect": "^1.20.2",
+    "express": "^4.14.0",
+    "webpack-dev-middleware": "^1.9.0"
   }
 }
