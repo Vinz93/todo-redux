@@ -1,8 +1,10 @@
+import path from 'path';
 module.exports = {
   entry: './index.jsx',
   output:{
-    path: __dirname,
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/',
   },
   devServer: {
     inline: true,
