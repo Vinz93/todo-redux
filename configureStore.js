@@ -1,6 +1,41 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
+import createLogger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import todoApp from './reducers';
+
+
+const configureStore = () => {
+
+  const middlewares = [promise];
+  if(process.env.NODE_ENV !== 'production'){
+    middlewares.push(createLogger());
+  }
+
+  const store = createStore(
+    todoApp,
+     applyMiddleware(...middlewares)
+   );
+
+  return store;
+}
+
+export default configureStore;
+
+
+
+/*
+================================================================================
+        MIDDLEWARES FROM SCRATCHS
+================================================================================
+
+
+
+const wrapDispatchWithMiddlewares = (store, middlewares) =>
+  middlewares.slice().reverse().forEach(middleware =>
+    store.dispatch = middleware(store)(store.dispatch)
+  );
+
 
 const logger = (store) => (next) =>{
   if(!console.group) {
@@ -28,11 +63,6 @@ const promise = (store) => (next) => (action) => {
 };
 
 
-const wrapDispatchWithMiddlewares = (store, middlewares) =>
-  middlewares.slice().reverse().forEach(middleware =>
-    store.dispatch = middleware(store)(store.dispatch)
-  );
-
 const configureStore = () => {
   let store = createStore(todoApp);
   const middlewares = [promise];
@@ -45,4 +75,5 @@ const configureStore = () => {
   return store;
 }
 
-export default configureStore;
+
+*/
