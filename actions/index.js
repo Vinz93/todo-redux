@@ -1,6 +1,11 @@
 import { v4 } from 'node-uuid';
 import * as api from '../api'
 
+export const requestTodos = (filter) => ({
+  type: 'REQUEST_TODOS',
+  filter,
+});
+
 const receiveTodos = (response, filter) => ({
   type: 'RECEIVE_TODOS',
   response,
